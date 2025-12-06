@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Test Results</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="user-dashboard.html">
+        <span class="fw-bold text-primary">Language Quiz</span>
+      </a>
+    </div>
+  </nav>
+  <div class="navbar-spacer"></div>
+
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="text-center mb-5">
+          <div class="score-circle d-inline-flex align-items-center justify-content-center mb-3" style="
+                width: 200px;
+                height: 200px;
+                border-radius: 50%;
+                background: linear-gradient(135deg, #0d6efd 0%, #0dcaf0 100%);
+              ">
+            <div class="text-white">
+              <h1 class="mb-0 fw-bold" id="scoreDisplay">0/0</h1>
+              <p class="mb-0 small">Score</p>
+            </div>
+          </div>
+
+          <h3 class="fw-bold mb-2">
+            Level: <span class="text-primary" id="levelDisplay">-</span>
+          </h3>
+          <p class="text-muted" id="feedbackText">Loading...</p>
+        </div>
+
+        <div class="card border-0 shadow-sm mb-4">
+          <div class="card-header bg-white border-bottom py-3">
+            <h5 class="mb-0 fw-bold">
+              <i class="bi bi-list-check me-2"></i>Answer Summary
+            </h5>
+          </div>
+          <div class="card-body p-0">
+            <table class="table table-hover mb-0">
+              <thead class="table-light">
+                <tr>
+                  <th>Question</th>
+                  <th>Your Answer</th>
+                  <th>Correct Answer</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="resultsTableBody">
+                <tr>
+                  <td colspan="4" class="text-center text-muted py-4">
+                    Loading Results...
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card border-0 shadow-sm bg-primary bg-opacity-10">
+          <div class="card-body p-4 d-flex align-items-start">
+            <i class="bi bi-trophy-fill text-warning me-3" style="font-size: 2rem"></i>
+            <div>
+              <h5 class="fw-bold mb-2" id="motivationalTitle">Excellent!</h5>
+              <p class="mb-0" id="motivationalText">Processing...</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-4">
+          <a href="user-dashboard.html" class="btn btn-primary">
+            <i class="bi bi-list-ul me-2"></i>Return to Dashboard
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/user/score.js"></script>
+</body>
+
+</html>
+

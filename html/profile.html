@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Profile - LingoFy</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.26.3/dist/sweetalert2.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="landing-page.html">
+        <span class="fw-bold text-primary">LingoFy</span>
+      </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#userNav" aria-controls="userNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="userNav">
+        <ul class="navbar-nav ms-auto align-items-center" id="userNavItems" style="gap: 0.5rem;">
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="navbar-spacer"></div>
+
+  <div class="container py-5">
+    <div class="mb-3">
+      <a href="#" id="dashboardLink" class="btn btn-primary">
+        <i class="bi bi-speedometer2 me-2"></i>Dashboard
+      </a>
+    </div>
+    
+    <div class="card border-0 shadow-sm mb-4">
+      <div class="card-body p-4">
+        <div class="row align-items-center">
+          <div class="col-md-3 text-center mb-3 mb-md-0">
+            <div class="profile-avatar mx-auto mb-3" style="
+              width: 120px;
+              height: 120px;
+              border-radius: 50%;
+              background: linear-gradient(135deg, #0d6efd 0%, #0dcaf0 100%);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            ">
+              <i class="bi bi-person-circle text-white" style="font-size: 5rem;"></i>
+            </div>
+            <h5 class="fw-bold mb-1" id="profileName">Loading...</h5>
+            <p class="text-muted small mb-0" id="profileEmail">Loading...</p>
+          </div>
+          <div class="col-md-9">
+            <div class="row g-3">
+              <div class="col-6 col-md-3">
+                <div class="text-center p-3 bg-light rounded">
+                  <h3 class="mb-0 text-primary" id="totalTests">0</h3>
+                  <small class="text-muted">Total Tests</small>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div class="text-center p-3 bg-light rounded">
+                  <h3 class="mb-0 text-success" id="completedTests">0</h3>
+                  <small class="text-muted">Completed</small>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div class="text-center p-3 bg-light rounded">
+                  <h3 class="mb-0 text-warning" id="pendingTests">0</h3>
+                  <small class="text-muted">Pending</small>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div class="text-center p-3 bg-light rounded">
+                  <h3 class="mb-0 text-info" id="averageScore">0%</h3>
+                  <small class="text-muted">Average Score</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <ul class="nav nav-tabs mb-4" id="profileTabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="info-tab" data-bs-toggle="tab" data-bs-target="#info" type="button" role="tab">
+          <i class="bi bi-person me-2"></i>Personal Information
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="completed-tab" data-bs-toggle="tab" data-bs-target="#completed" type="button" role="tab">
+          <i class="bi bi-check-circle me-2"></i>Completed Tests
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="pending-tab" data-bs-toggle="tab" data-bs-target="#pending" type="button" role="tab">
+          <i class="bi bi-clock me-2"></i>Pending Tests
+        </button>
+      </li>
+    </ul>
+
+    <div class="tab-content" id="profileTabContent">
+      <div class="tab-pane fade show active" id="info" role="tabpanel">
+        <div class="card border-0 shadow-sm">
+          <div class="card-header bg-white border-bottom py-3">
+            <h5 class="mb-0 fw-bold">
+              <i class="bi bi-person-badge me-2"></i>Personal Information
+            </h5>
+          </div>
+          <div class="card-body">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">Full Name</label>
+                <div class="form-control-plaintext" id="infoFullName">-</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">Email</label>
+                <div class="form-control-plaintext" id="infoEmail">-</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">Role</label>
+                <div class="form-control-plaintext">
+                  <span class="badge bg-primary" id="infoRole">-</span>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">Account Created</label>
+                <div class="form-control-plaintext" id="infoCreatedAt">-</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-pane fade" id="completed" role="tabpanel">
+        <div class="card border-0 shadow-sm">
+          <div class="card-header bg-white border-bottom py-3">
+            <h5 class="mb-0 fw-bold">
+              <i class="bi bi-check-circle me-2"></i>Completed Tests
+            </h5>
+          </div>
+          <div class="card-body p-0">
+            <div id="completedTestsList" class="p-3">
+              <div class="text-center text-muted py-5">
+                <i class="bi bi-hourglass-split" style="font-size: 3rem;"></i>
+                <p class="mt-3">Loading...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-pane fade" id="pending" role="tabpanel">
+        <div class="card border-0 shadow-sm">
+          <div class="card-header bg-white border-bottom py-3">
+            <h5 class="mb-0 fw-bold">
+              <i class="bi bi-clock me-2"></i>Pending Tests
+            </h5>
+          </div>
+          <div class="card-body p-0">
+            <div id="pendingTestsList" class="p-3">
+              <div class="text-center text-muted py-5">
+                <i class="bi bi-hourglass-split" style="font-size: 3rem;"></i>
+                <p class="mt-3">Loading...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer bg-dark text-white mt-5">
+    <div class="container py-5">
+      <div class="row g-4">
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="fw-bold mb-3">
+            <span class="text-info">Lingo</span><span class="text-primary">fy</span>
+          </h5>
+          <p class="text-white-50 small mb-3">
+            Test your language level with confidence. Master languages through comprehensive assessments designed for students and educators.
+          </p>
+          <div class="d-flex gap-3">
+            <a href="#" class="text-white-50" style="font-size: 1.5rem;" title="Facebook">
+              <i class="bi bi-facebook"></i>
+            </a>
+            <a href="#" class="text-white-50" style="font-size: 1.5rem;" title="Twitter/X">
+              <i class="bi bi-twitter-x"></i>
+            </a>
+            <a href="#" class="text-white-50" style="font-size: 1.5rem;" title="LinkedIn">
+              <i class="bi bi-linkedin"></i>
+            </a>
+            <a href="#" class="text-white-50" style="font-size: 1.5rem;" title="Instagram">
+              <i class="bi bi-instagram"></i>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+          <h6 class="fw-bold mb-3">Quick Links</h6>
+          <ul class="list-unstyled">
+            <li class="mb-2">
+              <a href="landing-page.html" class="text-white-50 text-decoration-none">
+                <i class="bi bi-house me-2"></i>Home
+              </a>
+            </li>
+            <li class="mb-2">
+              <a href="user-dashboard.html" class="text-white-50 text-decoration-none">
+                <i class="bi bi-speedometer2 me-2"></i>Dashboard
+              </a>
+            </li>
+            <li class="mb-2">
+              <a href="profile.html" class="text-white-50 text-decoration-none">
+                <i class="bi bi-person me-2"></i>Profile
+              </a>
+            </li>
+            <li class="mb-2">
+              <a href="settings.html" class="text-white-50 text-decoration-none">
+                <i class="bi bi-gear me-2"></i>Settings
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h6 class="fw-bold mb-3">Contact Us</h6>
+          <ul class="list-unstyled text-white-50">
+            <li class="mb-3">
+              <i class="bi bi-geo-alt-fill text-primary me-2"></i>
+              <span>Coding School</span>
+            </li>
+            <li class="mb-3">
+              <i class="bi bi-telephone-fill text-primary me-2"></i>
+              <a href="tel:0770000000" class="text-white-50 text-decoration-none">0770000000</a>
+            </li>
+            <li class="mb-3">
+              <i class="bi bi-envelope-fill text-primary me-2"></i>
+              <a href="mailto:info@lingofy.com" class="text-white-50 text-decoration-none">info@lingofy.com</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <h6 class="fw-bold mb-3">Newsletter</h6>
+          <p class="text-white-50 small mb-3">
+            Subscribe to get updates on new tests and features.
+          </p>
+          <form id="newsletterForm" class="d-flex gap-2">
+            <input type="email" class="form-control form-control-sm" placeholder="Enter your email" required>
+            <button type="submit" class="btn btn-primary btn-sm">
+              <i class="bi bi-send"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+      <hr class="my-4 bg-white-50">
+      <div class="row">
+        <div class="col-12 text-center">
+          <p class="text-white-50 mb-0">
+            &copy; 2024 <span class="text-info">Lingo</span><span class="text-primary">fy</span>. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.26.3/dist/sweetalert2.all.min.js"></script>
+  <script src="../js/user/profile.js">  </script>
+  <script>
+    document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = this.querySelector('input[type="email"]').value;
+      
+      Swal.fire({
+        icon: 'success',
+        title: 'Subscribed!',
+        text: 'Thank you for subscribing to our newsletter.',
+        confirmButtonColor: '#0d6efd',
+        timer: 2000
+      });
+      
+      this.reset();
+    });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+      const userNavItems = document.getElementById('userNavItems');
+      const dashboardLinkBtn = document.getElementById('dashboardLink');
+      
+      if (currentUser) {
+        if (dashboardLinkBtn) {
+          const dashboardLink = currentUser.role === 'admin' ? 'admin-dashboard.html' : 'user-dashboard.html';
+          dashboardLinkBtn.href = dashboardLink;
+        }
+        
+        if (userNavItems) {
+          const dashboardLink = currentUser.role === 'admin' ? 'admin-dashboard.html' : 'user-dashboard.html';
+          userNavItems.innerHTML = `
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-person-circle me-2" style="font-size: 1.5rem;"></i>
+              <span class="fw-semibold">${currentUser.fullName || currentUser.email}</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+              <li>
+                <a class="dropdown-item" href="landing-page.html">
+                  <i class="bi bi-house me-2"></i>Home
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item active" href="profile.html">
+                  <i class="bi bi-person me-2"></i>Profile
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="${dashboardLink}">
+                  <i class="bi bi-speedometer2 me-2"></i>Dashboard
+                </a>
+              </li>
+              <li><hr class="dropdown-divider"></li>
+              <li>
+                <a class="dropdown-item text-danger" href="#" onclick="logout(); return false;">
+                  <i class="bi bi-box-arrow-right me-2"></i>Logout
+                </a>
+              </li>
+            </ul>
+          </li>
+        `;
+      } else {
+        window.location.href = 'login.html';
+      }
+    });
+    
+    function logout() {
+      localStorage.removeItem('currentUser');
+      window.location.href = 'landing-page.html';
+    }
+  </script>
+</body>
+
+</html>
+

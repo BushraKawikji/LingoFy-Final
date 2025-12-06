@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Settings - LingoFy</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.26.3/dist/sweetalert2.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="landing-page.html">
+        <span class="fw-bold text-primary">LingoFy</span>
+      </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#userNav" aria-controls="userNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="userNav">
+        <ul class="navbar-nav ms-auto align-items-center" id="userNavItems" style="gap: 0.5rem;">
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="navbar-spacer"></div>
+
+  <div class="container py-5">
+    <div class="row">
+      <div class="col-lg-3 mb-4">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body">
+            <h5 class="fw-bold mb-3">
+              <i class="bi bi-gear me-2"></i>Settings
+            </h5>
+            <ul class="nav nav-pills flex-column" id="settingsTabs" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active w-100 text-start" id="profile-tab" data-bs-toggle="pill" data-bs-target="#profile" type="button" role="tab">
+                  <i class="bi bi-person me-2"></i>Profile
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link w-100 text-start" id="password-tab" data-bs-toggle="pill" data-bs-target="#password" type="button" role="tab">
+                  <i class="bi bi-shield-lock me-2"></i>Password
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link w-100 text-start" id="notifications-tab" data-bs-toggle="pill" data-bs-target="#notifications" type="button" role="tab">
+                  <i class="bi bi-bell me-2"></i>Notifications
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link w-100 text-start" id="appearance-tab" data-bs-toggle="pill" data-bs-target="#appearance" type="button" role="tab">
+                  <i class="bi bi-palette me-2"></i>Appearance
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-9">
+        <div class="tab-content" id="settingsTabContent">
+          <div class="tab-pane fade show active" id="profile" role="tabpanel">
+            <div class="card border-0 shadow-sm">
+              <div class="card-header bg-white border-bottom py-3">
+                <h5 class="mb-0 fw-bold">
+                  <i class="bi bi-person me-2"></i>Profile Settings
+                </h5>
+              </div>
+              <div class="card-body">
+                <form id="profileForm">
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label for="fullName" class="form-label fw-semibold">Full Name</label>
+                      <input type="text" class="form-control" id="fullName" placeholder="Enter your full name">
+                    </div>
+                    <div class="col-md-6">
+                      <label for="email" class="form-label fw-semibold">Email</label>
+                      <input type="email" class="form-control" id="email" placeholder="Enter your email" readonly>
+                      <small class="text-muted">Email cannot be changed</small>
+                    </div>
+                    <div class="col-12">
+                      <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-save me-2"></i>Save Changes
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-pane fade" id="password" role="tabpanel">
+            <div class="card border-0 shadow-sm">
+              <div class="card-header bg-white border-bottom py-3">
+                <h5 class="mb-0 fw-bold">
+                  <i class="bi bi-shield-lock me-2"></i>Change Password
+                </h5>
+              </div>
+              <div class="card-body">
+                <form id="passwordForm">
+                  <div class="row g-3">
+                    <div class="col-12">
+                      <label for="currentPassword" class="form-label fw-semibold">Current Password</label>
+                      <input type="password" class="form-control" id="currentPassword" placeholder="Enter current password" required>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="newPassword" class="form-label fw-semibold">New Password</label>
+                      <input type="password" class="form-control" id="newPassword" placeholder="Enter new password" required>
+                      <small class="text-muted">Must be at least 6 characters</small>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="confirmPassword" class="form-label fw-semibold">Confirm Password</label>
+                      <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm new password" required>
+                    </div>
+                    <div class="col-12">
+                      <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-key me-2"></i>Update Password
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-pane fade" id="notifications" role="tabpanel">
+            <div class="card border-0 shadow-sm">
+              <div class="card-header bg-white border-bottom py-3">
+                <h5 class="mb-0 fw-bold">
+                  <i class="bi bi-bell me-2"></i>Notification Preferences
+                </h5>
+              </div>
+              <div class="card-body">
+                <form id="notificationsForm">
+                  <div class="mb-4">
+                    <h6 class="fw-semibold mb-3">Email Notifications</h6>
+                    <div class="form-check form-switch mb-3">
+                      <input class="form-check-input" type="checkbox" id="emailTestResults" checked>
+                      <label class="form-check-label" for="emailTestResults">
+                        Send test results via email
+                      </label>
+                    </div>
+                    <div class="form-check form-switch mb-3">
+                      <input class="form-check-input" type="checkbox" id="emailNewTests" checked>
+                      <label class="form-check-label" for="emailNewTests">
+                        Notify me about new tests
+                      </label>
+                    </div>
+                    <div class="form-check form-switch mb-3">
+                      <input class="form-check-input" type="checkbox" id="emailUpdates">
+                      <label class="form-check-label" for="emailUpdates">
+                        Product updates and announcements
+                      </label>
+                    </div>
+                  </div>
+                  <div>
+                    <h6 class="fw-semibold mb-3">In-App Notifications</h6>
+                    <div class="form-check form-switch mb-3">
+                      <input class="form-check-input" type="checkbox" id="appReminders" checked>
+                      <label class="form-check-label" for="appReminders">
+                        Show reminders for pending tests
+                      </label>
+                    </div>
+                    <div class="form-check form-switch mb-3">
+                      <input class="form-check-input" type="checkbox" id="appAchievements" checked>
+                      <label class="form-check-label" for="appAchievements">
+                        Show achievement notifications
+                      </label>
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-save me-2"></i>Save Preferences
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-pane fade" id="appearance" role="tabpanel">
+            <div class="card border-0 shadow-sm">
+              <div class="card-header bg-white border-bottom py-3">
+                <h5 class="mb-0 fw-bold">
+                  <i class="bi bi-palette me-2"></i>Appearance Settings
+                </h5>
+              </div>
+              <div class="card-body">
+                <form id="appearanceForm">
+                  <div class="mb-4">
+                    <h6 class="fw-semibold mb-3">Theme</h6>
+                    <div class="row g-3">
+                      <div class="col-md-4">
+                        <div class="card border-2" id="themeLight" style="cursor: pointer;">
+                          <div class="card-body text-center">
+                            <i class="bi bi-sun-fill text-warning" style="font-size: 2rem;"></i>
+                            <h6 class="mt-2 mb-0">Light</h6>
+                            <input type="radio" name="theme" value="light" class="d-none" checked>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="card border" id="themeDark" style="cursor: pointer;">
+                          <div class="card-body text-center">
+                            <i class="bi bi-moon-fill text-primary" style="font-size: 2rem;"></i>
+                            <h6 class="mt-2 mb-0">Dark</h6>
+                            <input type="radio" name="theme" value="dark" class="d-none">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="card border" id="themeAuto" style="cursor: pointer;">
+                          <div class="card-body text-center">
+                            <i class="bi bi-circle-half text-info" style="font-size: 2rem;"></i>
+                            <h6 class="mt-2 mb-0">Auto</h6>
+                            <input type="radio" name="theme" value="auto" class="d-none">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mb-4">
+                    <h6 class="fw-semibold mb-3">Language</h6>
+                    <select class="form-select" id="languageSelect">
+                      <option value="en" selected>English</option>
+                      <option value="ar">العربية</option>
+                      <option value="fr">Français</option>
+                    </select>
+                  </div>
+                  <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-save me-2"></i>Save Appearance
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer bg-dark text-white mt-5">
+    <div class="container py-5">
+      <div class="row g-4">
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="fw-bold mb-3">
+            <span class="text-info">Lingo</span><span class="text-primary">fy</span>
+          </h5>
+          <p class="text-white-50 small mb-3">
+            Test your language level with confidence. Master languages through comprehensive assessments designed for students and educators.
+          </p>
+          <div class="d-flex gap-3">
+            <a href="#" class="text-white-50" style="font-size: 1.5rem;" title="Facebook">
+              <i class="bi bi-facebook"></i>
+            </a>
+            <a href="#" class="text-white-50" style="font-size: 1.5rem;" title="Twitter/X">
+              <i class="bi bi-twitter-x"></i>
+            </a>
+            <a href="#" class="text-white-50" style="font-size: 1.5rem;" title="LinkedIn">
+              <i class="bi bi-linkedin"></i>
+            </a>
+            <a href="#" class="text-white-50" style="font-size: 1.5rem;" title="Instagram">
+              <i class="bi bi-instagram"></i>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+          <h6 class="fw-bold mb-3">Quick Links</h6>
+          <ul class="list-unstyled">
+            <li class="mb-2">
+              <a href="landing-page.html" class="text-white-50 text-decoration-none">
+                <i class="bi bi-house me-2"></i>Home
+              </a>
+            </li>
+            <li class="mb-2">
+              <a href="settings.html" class="text-white-50 text-decoration-none">
+                <i class="bi bi-gear me-2"></i>Settings
+              </a>
+            </li>
+            <li class="mb-2">
+              <a href="profile.html" class="text-white-50 text-decoration-none">
+                <i class="bi bi-person me-2"></i>Profile
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h6 class="fw-bold mb-3">Contact Us</h6>
+          <ul class="list-unstyled text-white-50">
+            <li class="mb-3">
+              <i class="bi bi-geo-alt-fill text-primary me-2"></i>
+              <span>Coding School</span>
+            </li>
+            <li class="mb-3">
+              <i class="bi bi-telephone-fill text-primary me-2"></i>
+              <a href="tel:0770000000" class="text-white-50 text-decoration-none">0770000000</a>
+            </li>
+            <li class="mb-3">
+              <i class="bi bi-envelope-fill text-primary me-2"></i>
+              <a href="mailto:info@lingofy.com" class="text-white-50 text-decoration-none">info@lingofy.com</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <h6 class="fw-bold mb-3">Newsletter</h6>
+          <p class="text-white-50 small mb-3">
+            Subscribe to get updates on new tests and features.
+          </p>
+          <form id="newsletterForm" class="d-flex gap-2">
+            <input type="email" class="form-control form-control-sm" placeholder="Enter your email" required>
+            <button type="submit" class="btn btn-primary btn-sm">
+              <i class="bi bi-send"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+      <hr class="my-4 bg-white-50">
+      <div class="row">
+        <div class="col-12 text-center">
+          <p class="text-white-50 mb-0">
+            &copy; 2024 <span class="text-info">Lingo</span><span class="text-primary">fy</span>. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.26.3/dist/sweetalert2.all.min.js"></script>
+  <script src="../js/shared/settings.js">  </script>
+  <script>
+    document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = this.querySelector('input[type="email"]').value;
+      
+      Swal.fire({
+        icon: 'success',
+        title: 'Subscribed!',
+        text: 'Thank you for subscribing to our newsletter.',
+        confirmButtonColor: '#0d6efd',
+        timer: 2000
+      });
+      
+      this.reset();
+    });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+      const userNavItems = document.getElementById('userNavItems');
+      
+      if (currentUser && userNavItems) {
+        const profileLink = currentUser.role === 'admin' ? 'admin-profile.html' : 'profile.html';
+        const dashboardLink = currentUser.role === 'admin' ? 'admin-dashboard.html' : 'user-dashboard.html';
+        
+        userNavItems.innerHTML = `
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-person-circle me-2" style="font-size: 1.5rem;"></i>
+              <span class="fw-semibold">${currentUser.fullName || currentUser.email}</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+              <li>
+                <a class="dropdown-item" href="landing-page.html">
+                  <i class="bi bi-house me-2"></i>Home
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="${profileLink}">
+                  <i class="bi bi-person me-2"></i>Profile
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="${dashboardLink}">
+                  <i class="bi bi-speedometer2 me-2"></i>Dashboard
+                </a>
+              </li>
+              <li><hr class="dropdown-divider"></li>
+              <li>
+                <a class="dropdown-item text-danger" href="#" onclick="logout(); return false;">
+                  <i class="bi bi-box-arrow-right me-2"></i>Logout
+                </a>
+              </li>
+            </ul>
+          </li>
+        `;
+      } else {
+        window.location.href = 'login.html';
+      }
+    });
+    
+    function logout() {
+      localStorage.removeItem('currentUser');
+      window.location.href = 'landing-page.html';
+    }
+  </script>
+</body>
+
+</html>
+

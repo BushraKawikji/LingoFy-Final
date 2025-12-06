@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Builder - French Quiz</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.26.3/dist/sweetalert2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top shadow">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="admin-dashboard.html">
+                <i class="bi bi-arrow-left me-2"></i>
+                <span>Back to Dashboard</span>
+            </a>
+        </div>
+    </nav>
+    <div class="navbar-spacer"></div>
+
+    <div class="container-fluid py-4">
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-header bg-white border-bottom py-3">
+                        <h5 class="mb-0 fw-bold">
+                            <i class="bi bi-gear me-2"></i>Form Settings
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-4">
+                            <label for="formTitle" class="form-label fw-semibold">Form Title</label>
+                            <input type="text" class="form-control" id="formTitle" placeholder="Enter form title" />
+                        </div>
+                        <div class="mb-4">
+                            <label for="formDescription" class="form-label fw-semibold">Description</label>
+                            <textarea class="form-control" id="formDescription" rows="4"
+                                placeholder="Enter form description"></textarea>
+                        </div>
+                        <button class="btn btn-primary w-100" id="saveFormBtn">
+                            <i class="bi bi-save me-2"></i>Save Form
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-8">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-white border-bottom py-3">
+                        <h5 class="mb-0 fw-bold">
+                            <i class="bi bi-plus-circle me-2"></i>Question Builder
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-4">
+                            <label for="questionText" class="form-label fw-semibold">Question Text</label>
+                            <div class="formatting-toolbar mb-2 d-flex gap-2 flex-wrap">
+                                <button class="btn btn-sm btn-outline-secondary" type="button" title="Bold" id="bold">
+                                    <i class="bi bi-type-bold"></i>
+                                </button>
+                                <button class="btn btn-sm btn-outline-secondary" type="button" title="Italic"
+                                    id="italic">
+                                    <i class="bi bi-type-italic"></i>
+                                </button>
+                                <button class="btn btn-sm btn-outline-secondary" type="button" title="Underline"
+                                    id="underline">
+                                    <i class="bi bi-type-underline"></i>
+                                </button>
+                                <select class="form-select form-select-sm" id="fontStyle" style="width: auto">
+                                    <option value="sans">Sans Serif</option>
+                                    <option value="serif">Serif</option>
+                                    <option value="mono">Monospace</option>
+                                </select>
+                            </div>
+                            <textarea class="form-control" id="questionText" rows="3"
+                                placeholder="Enter your question"></textarea>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="questionType" class="form-label fw-semibold">Question Type</label>
+                            <select class="form-select" id="questionType">
+                                <option value="text">Text Input</option>
+                                <option value="radio">Multiple Choice (Radio)</option>
+                                <option value="select">Dropdown (Select)</option>
+                            </select>
+                        </div>
+
+                        <div id="radioOptions" class="mb-4 d-none">
+                            <label class="form-label fw-semibold">Options (Radio)</label>
+
+                            <div id="radioOptionsContainer" class="optionsContainer">
+                                <div class="option-item mb-2 d-flex align-items-center gap-2">
+                                    <input type="text" class="form-control" placeholder="Option text" />
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="correctOption" value="0" />
+                                        <label class="form-check-label small">Correct</label>
+                                    </div>
+                                    <button class="btn btn-sm btn-outline-danger" type="button"
+                                        onclick="removeOption(this)">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </div>
+
+                                <div class="option-item mb-2 d-flex align-items-center gap-2">
+                                    <input type="text" class="form-control" placeholder="Option text" />
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="correctOption" value="1" />
+                                        <label class="form-check-label small">Correct</label>
+                                    </div>
+                                    <button class="btn btn-sm btn-outline-danger" type="button"
+                                        onclick="removeOption(this)">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-sm btn-outline-primary" type="button" onclick="addOption()">
+                                <i class="bi bi-plus-circle me-1"></i>Add Option
+                            </button>
+                        </div>
+
+                        <div id="checkboxOptions" class="mb-4 d-none">
+                            <label class="form-label fw-semibold">Options (Checkbox)</label>
+
+                            <div id="checkboxOptionsContainer" class="optionsContainer">
+                                <div class="option-item mb-2 d-flex align-items-center gap-2">
+                                    <input type="text" class="form-control" placeholder="Option text" />
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="correctOption"
+                                            value="0" />
+                                        <label class="form-check-label small">Correct</label>
+                                    </div>
+                                    <button class="btn btn-sm btn-outline-danger" type="button"
+                                        onclick="removeOption(this)">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </div>
+
+                                <div class="option-item mb-2 d-flex align-items-center gap-2">
+                                    <input type="text" class="form-control" placeholder="Option text" />
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="correctOption"
+                                            value="1" />
+                                        <label class="form-check-label small">Correct</label>
+                                    </div>
+                                    <button class="btn btn-sm btn-outline-danger" type="button"
+                                        onclick="removeOption(this)">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-sm btn-outline-primary" type="button" onclick="addOption()">
+                                <i class="bi bi-plus-circle me-1"></i>Add Option
+                            </button>
+                        </div>
+
+                        <div id="textAnswerContainer" class="mb-4 d-none">
+                            <label for="correctAnswer" class="form-label fw-semibold">Correct Answer</label>
+                            <input type="text" class="form-control" id="correctAnswer" 
+                                placeholder="Enter the correct answer for this question" />
+                            <small class="text-muted">This answer will be used to automatically grade student responses.</small>
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="requiredToggle" checked />
+                                <label class="form-check-label fw-semibold" for="requiredToggle">
+                                    Required Question
+                                </label>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary w-100 mb-4" onclick="addQuestion(event)">
+                            <i class="bi bi-plus-circle me-2"></i>Add Question
+                        </button>
+
+                        <div id="questionsPreview">
+                            <h6 class="fw-bold mb-3">
+                                <i class="bi bi-list-check me-2"></i>Added Questions
+                            </h6>
+                            <div id="questionsList">
+                                <p class="text-muted text-center py-4">No questions added yet</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.26.3/dist/sweetalert2.all.min.js"></script>
+    <script src="../js/admin/form-creation.js"></script>
+</body>
+
+</html>
+
